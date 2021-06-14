@@ -38,7 +38,7 @@
             <h5 class="modal-title" id="exampleModalLabel">New note</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form method='post' action='/note/add'>
+          <form method='post' action='/note'>
           <div class="modal-body">
             @csrf
             <input type='title' name='title' id='title' placeholder='Title' class='form-control'><br>

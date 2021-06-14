@@ -20,8 +20,10 @@ Route::get('/', function () {
 
 Route::get('/note', [NoteController::class, 'getAllNotes'])->name('note');
 
-Route::post('/note/add', [NoteController::class, 'addNote']);
+Route::post('/note', [NoteController::class, 'addNote']);
 
-Route::get('/note/{id}', function ($id) {
-    return 'Note #'.$id;
-});
+Route::get('/note/{id}', [NoteController::class, 'getNote']);
+
+Route::put('/note/{id}', [NoteController::class, 'updateNote']);
+
+Route::delete('/note/{id}', [NoteController::class, 'delNote']);
