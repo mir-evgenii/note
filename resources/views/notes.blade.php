@@ -9,10 +9,8 @@
   <div class="col">
     <div class="card text-dark bg-light">
       <div class="card-header">
-        <div class="btn-group me-2">
-          <a class="btn btn-outline-secondary" href="/note/{{ $note->id }}" role="button"><i class="bi bi-pencil"></i></a>
-          <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#delNoteModal{{ $note->id }}"><i class="bi bi-trash"></i></button>
-        </div>
+        <a class="btn btn-outline-secondary" href="/note/{{ $note->id }}" role="button"><i class="bi bi-pencil"></i></a>
+        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#delNoteModal{{ $note->id }}"><i class="bi bi-trash"></i></button>
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ $note->title }}</h5>
@@ -34,11 +32,11 @@
           <h6>Do you really want to delete note: "{{ $note->title }}"?</h6>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
           <form method='post' action='/note/{{ $note->id }}'> 
             @csrf
             @method('DELETE')
-            <button type='submit' class='btn btn-danger'>Delete</button>
+            <button type='submit' class='btn btn-outline-danger'>Delete</button>
           </form>
         </div>
       </div>
@@ -46,7 +44,5 @@
   </div>
 @endforeach
 </div>
-
-
 
 @endsection

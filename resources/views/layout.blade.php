@@ -19,12 +19,12 @@
 <body>
 
     <!-- Header -->
-    <div class="d-flex flex-column flex-md-row align-items-center mb-3 border-bottom">
+    <div class="navbar fixed-top navbar-light bg-light border-bottom">
       <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <h1 class="display-6" class="fs-4"><i class="bi bi-file-earmark-text"></i> Note</h1>
+        <p class="m-3 mb-0 mt-0 lead"><i class="bi bi-file-earmark-text"></i> Note</p>
       </a>
 
-      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+      <nav class="m-3 mb-0 mt-0 d-inline-flex ms-md-auto">
         <a class="me-3 py-2 text-dark text-decoration-none" href="/note">Notes</a>
         <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newNoteModal"><i class="bi bi-plus-lg"></i></button>
       </nav>
@@ -45,26 +45,22 @@
             <textarea name='content' id='content' placeholder='Content' class='form-control'></textarea><br>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type='submit' class='btn btn-success'>Save</button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+            <button type='submit' class='btn btn-outline-success'>Save</button>
           </div>
           </form>
         </div>
       </div>
     </div>
 
-    <div class="container">
+    <div class="mb-5 mt-5 pt-4 container">
     @yield('main_layout_content')
     </div>
 
     <!-- Footer -->
-    <footer class="pt-2 my-md-3 border-top">
-    <div class="row">
-      <div class="col-12 col-md">
-        <small class="d-block text-center mb-3 text-muted">Evgenii Mironov "Note" 2021</small>
-      </div>
-    </div>
-  </footer>
+    <footer class="footer fixed-bottom navbar-light bg-light border-top">
+        <small class="d-block text-center text-muted">Evgenii Mironov "Note" 2021</small>
+    </footer>
 
 </body>
 </html>
