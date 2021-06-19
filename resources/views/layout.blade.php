@@ -25,8 +25,12 @@
       </a>
 
       <nav class="m-3 mb-0 mt-0 d-inline-flex ms-md-auto">
-        <a class="me-3 py-2 text-dark text-decoration-none" href="/note">Notes</a>
-        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newNoteModal"><i class="bi bi-plus-lg"></i></button>
+        @if ($authUser)
+          <a class="me-3 py-2 text-dark text-decoration-none" href="/note">Notes</a>
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newNoteModal"><i class="bi bi-plus-lg"></i></button>
+        @else
+          <a class="me-3 py-2 text-dark text-decoration-none" href="/note">Login</a>
+        @endif
       </nav>
     </div>
 

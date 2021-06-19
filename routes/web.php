@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NoteController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +17,21 @@ use App\Http\Controllers\NoteController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', ['authUser' => Auth::check()]);
 });
 
-Route::get('/note', [NoteController::class, 'getAllNotes'])->name('note');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
-Route::post('/note', [NoteController::class, 'addNote']);
+Route::get('/note', [NoteController::class, 'getAllNotes'])->middleware(['auth'])->name('note');
 
-Route::get('/note/{id}', [NoteController::class, 'getNote']);
+Route::post('/note', [NoteController::class, 'addNote'])->middleware(['auth']);
 
-Route::put('/note/{id}', [NoteController::class, 'updateNote']);
+Route::get('/note/{id}', [NoteController::class, 'getNote'])->middleware(['auth']);
 
-Route::delete('/note/{id}', [NoteController::class, 'delNote']);
+Route::put('/note/{id}', [NoteController::class, 'updateNote'])->middleware(['auth']);
+
+Route::delete('/note/{id}', [NoteController::class, 'delNote'])->middleware(['auth']);
+
+require __DIR__.'/auth.php';
