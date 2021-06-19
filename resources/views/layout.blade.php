@@ -25,11 +25,12 @@
       </a>
 
       <nav class="m-3 mb-0 mt-0 d-inline-flex ms-md-auto">
-        @if ($authUser)
+        @if (Illuminate\Support\Facades\Auth::check())
           <a class="me-3 py-2 text-dark text-decoration-none" href="/note">Notes</a>
           <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newNoteModal"><i class="bi bi-plus-lg"></i></button>
+          <a class="me-3 py-2 text-dark text-decoration-none" href="/logout">Logout</a>
         @else
-          <a class="me-3 py-2 text-dark text-decoration-none" href="/note">Login</a>
+          <a class="me-3 py-2 text-dark text-decoration-none" href="/login">Login</a>
         @endif
       </nav>
     </div>

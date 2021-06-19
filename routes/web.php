@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\NoteController;
 
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,14 @@ use App\Http\Controllers\NoteController;
 */
 
 Route::get('/', function () {
-    return view('home', ['authUser' => Auth::check()]);
+    return view('home');
 });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
+
+Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth']);
 
 Route::get('/note', [NoteController::class, 'getAllNotes'])->middleware(['auth'])->name('note');
 
