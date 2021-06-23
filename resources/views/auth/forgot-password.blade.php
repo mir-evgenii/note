@@ -1,12 +1,13 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layout')
 
-        <div class="mb-4 text-sm text-gray-600">
+@section('title') Note | Home page @endsection
+
+@section('main_layout_content')
+
+<div class="row justify-content-center">
+    <div class="col-3">
+
+        <div class="mb-3">
             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </div>
 
@@ -20,17 +21,15 @@
             @csrf
 
             <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
+                <button class="btn btn-outline-primary">{{ __('Email Password Reset Link') }}</button>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+</div>
+
+@endsection
