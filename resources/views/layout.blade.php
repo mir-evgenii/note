@@ -28,6 +28,9 @@
         @if (Illuminate\Support\Facades\Auth::check())
           <a class="py-2 text-dark text-decoration-none" href="/note" title="All notes"><i class="bi bi-grid-3x3-gap"></i></a>
           <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newNoteModal" title="New note"><i class="bi bi-plus-lg"></i></button>
+          @if (App\Http\Controllers\UserController::isAdmin())
+          <a class="me-3 py-2 text-dark text-decoration-none" href="/user" title="All users"><i class="bi bi-people"></i></a>
+          @endif
           <a class="me-3 py-2 text-dark text-decoration-none" href="/logout" title="Logout"><i class="bi bi-box-arrow-right"></i></a>
         @else
           <a class="me-3 py-2 text-dark text-decoration-none" href="/register" title="Register"><i class="bi bi-person-plus"></i></a>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,5 +37,9 @@ Route::get('/note/{id}', [NoteController::class, 'getNote'])->middleware(['auth'
 Route::put('/note/{id}', [NoteController::class, 'updateNote'])->middleware(['auth']);
 
 Route::delete('/note/{id}', [NoteController::class, 'delNote'])->middleware(['auth']);
+
+Route::get('/user', [UserController::class, 'getAllUsers'])->middleware(['auth'])->name('user');
+
+Route::delete('/user/{id}', [UserController::class, 'delUser'])->middleware(['auth']);
 
 require __DIR__.'/auth.php';

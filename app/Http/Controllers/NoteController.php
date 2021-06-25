@@ -10,9 +10,9 @@ class NoteController extends Controller
 {
     // Get all notes | method: GET | host:port/note
     public function getAllNotes() {
-        $note = new Note();
+        $notes = Note::where('user_id', Auth::id())->get();
 
-        return view('notes', ['notes' => $note->where('user_id', Auth::id())->get()]);
+        return view('notes', ['notes' => $notes]);
     }
 
     // Add new note | method: POST | host:port/note
