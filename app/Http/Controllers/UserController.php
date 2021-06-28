@@ -20,6 +20,13 @@ class UserController extends Controller
         return view('users', ['users' => $users]);
     }
 
+    // Get user | method: GET | host:port/dashboard
+    public function getUser() {
+        $id = Auth::id();
+
+        return view('dashboard', ['user' => User::find($id)]);
+    }
+
     // Delete user | method: DELETE | host:port/user/{id}
     public function delUser(Request $request) {
         self::isAdmin404();
