@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -25,6 +26,32 @@ class UserController extends Controller
         $id = Auth::id();
 
         return view('dashboard', ['user' => User::find($id)]);
+    }
+
+    // Update user | method: PUT | host:port/user
+    public function updateUser(Request $request) {
+        $id = Auth::id();
+        $user = User::find($id);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
+
+        return redirect()->route('dashboard');
+    }
+
+    // Update user password | method: PUT | host:port/password
+    public function updatePassword(Request $request) {
+        $id = Auth::id();
+        $user = User::find($id);
+        $hashed_old_pass = Hash::make($request->input('old_password'));
+
+        if ($user->password === $hashed_old_pass && $request->input('new_password_1') === $request->input('new_password_2')) {
+            $user->password = Hash::make($request->input('new_password_1'));
+            $user->save();
+        }
+
+        return redirect()->route('dashboard');
     }
 
     // Delete user | method: DELETE | host:port/user/{id}

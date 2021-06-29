@@ -36,7 +36,11 @@ Route::put('/note/{id}', [NoteController::class, 'updateNote'])->middleware(['au
 
 Route::delete('/note/{id}', [NoteController::class, 'delNote'])->middleware(['auth']);
 
-Route::get('/user', [UserController::class, 'getAllUsers'])->middleware(['auth'])->name('user');
+Route::get('/user', [UserController::class, 'getAllUsers'])->middleware(['auth']);
+
+Route::put('/user', [UserController::class, 'updateUser'])->middleware(['auth']);
+
+Route::put('/password', [UserController::class, 'updatePassword'])->middleware(['auth']);
 
 Route::delete('/user/{id}', [UserController::class, 'delUser'])->middleware(['auth']);
 

@@ -16,7 +16,7 @@
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <form method='post' action='/note'>
+        <form method='post' action='/user'>
           @method('PUT')
           @csrf
           <input type='name' name='name' value='{{ $user->name }}' id='name' class='form-control'><br>
@@ -51,10 +51,17 @@
     </h2>
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <input type='name' name='name' value='' id='name' class='form-control'><br>
-        <input type='name' name='name' value='' id='name' class='form-control'><br>
-        <input type='name' name='name' value='' id='name' class='form-control'><br>
-        <button type='submit' class='btn btn-outline-success'>Save</button>
+        <form method='post' action='/password'>
+          @method('PUT')
+          @csrf
+          <label for="old_password" class="form-label">Old password</label>
+          <input type="password" name='old_password' value='' id='old_password' class='form-control'><br>
+          <label for="new_password_1" class="form-label">New password</label>
+          <input type="password" name='new_password_1' value='' id='new_password_1' class='form-control'><br>
+          <label for="new_password_2" class="form-label">Repeat new password</label>
+          <input type="password" name='new_password_2' value='' id='new_password_2' class='form-control'><br>
+          <button type='submit' class='btn btn-outline-success'>Save</button>
+        </form>
       </div>
     </div>
   </div>
