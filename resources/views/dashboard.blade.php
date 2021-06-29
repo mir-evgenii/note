@@ -4,16 +4,63 @@
 
 @section('main_layout_content')
 
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="{{ $user->name }}" aria-label="{{ $user->name }}" aria-describedby="button-addon2">
-  <input type="text" class="form-control" placeholder="{{ $user->email }}" aria-label="{{ $user->email }}" aria-describedby="button-addon2">
-  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Save</button>
+<div class="row justify-content-md-center">
+
+<div class="col-6">
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        Profile
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <form method='post' action='/note'>
+          @method('PUT')
+          @csrf
+          <input type='name' name='name' value='{{ $user->name }}' id='name' class='form-control'><br>
+          <input type='email' name='email' value='{{ $user->email }}' id='email' class='form-control'><br>
+          <button type='submit' class='btn btn-outline-success'>Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Telegram
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <form method='post' action='/note'>
+          @method('PUT')
+          @csrf
+          <input type='name' name='name' value='{{ $user->name }}' id='name' class='form-control'><br>
+          <button type='submit' class='btn btn-outline-success'>Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Change password
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <input type='name' name='name' value='' id='name' class='form-control'><br>
+        <input type='name' name='name' value='' id='name' class='form-control'><br>
+        <input type='name' name='name' value='' id='name' class='form-control'><br>
+        <button type='submit' class='btn btn-outline-success'>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
-<div class="text-center">
-<a href="/note" class="btn btn-outline-primary">My notes</a>
-<a href="/note" class="btn btn-outline-success">Save</a>
-<a href="/logout" class="btn btn-outline-danger">Logout</a>
-<div>
+</div>
 
 @endsection
