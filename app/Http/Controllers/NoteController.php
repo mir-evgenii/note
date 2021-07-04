@@ -45,9 +45,13 @@ class NoteController extends Controller
 
     // Get note | method: GET | host:port/note/{id}
     public function getNote(Request $request) {
-        $note = Note::find($request->id);
+        $note = Note::where('notes.id', $request->id)
+            ->where('user_id', Auth::id())
+            ->select('notes.id', 'title', 'content', 'notes.updated_at', 'note_notifications.notify_at')
+            ->leftJoin('note_notifications', 'notes.id', '=', 'note_notifications.note_id')
+            ->first();
 
-        if ($note != null && $note->user_id == Auth::id()) {
+        if ($note != null) {
             return view('note', ['note' => $note]);
         } else {
             abort(404);
@@ -56,12 +60,24 @@ class NoteController extends Controller
 
     // Update note | method: PUT | host:port/note/{id}
     public function updateNote(Request $request) {
-        $note = Note::find($request->id);
+        $note = Note::where('id', $request->id)
+            ->where('user_id', Auth::id())
+            ->first();
 
-        if ($note != null && $note->user_id == Auth::id()) {
+        if ($note != null) {
             $note->title = $request->input('title');
             $note->content = $request->input('content');
             $note->save();
+
+            if ($request->input('notify_at') != null) {
+                $notify = NoteNotifications::where('note_id', $note->id)->first();
+                if ($notify == null) {
+                    $notify = new NoteNotifications();
+                    $notify->note_id = $note->id;
+                }
+                $notify->notify_at = $request->input('notify_at');
+                $notify->save();
+            }
         }
 
         return redirect()->route('note');
@@ -69,9 +85,15 @@ class NoteController extends Controller
 
     // Delete note | method: DELETE | host:port/note/{id}
     public function delNote(Request $request) {
-        $note = Note::find($request->id);
+        $note = Note::where('id', $request->id)
+            ->where('user_id', Auth::id())
+            ->first();
 
-        if ($note != null && $note->user_id == Auth::id()) {
+        if ($note != null) {
+            $notify = NoteNotifications::where('note_id', $note->id)->first();
+            if ($notify != null) {
+                $notify->delete();
+            }
             $note->delete();
         }
 

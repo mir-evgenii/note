@@ -4,10 +4,18 @@
 
 @section('main_layout_content')
 
+<div class="mb-3">
+  <p class="text-muted">Last update {{ $note->updated_at }}</p>
+</div>
+
 <form method='post' action='/note/{{ $note->id }}'>
     @method('PUT')
     @csrf
+    <label for="notify_at" class="form-label">Notify</label>
+    <input type='notify_at' name='notify_at' id='notify_at' value='{{ $note->notify_at }}' class='form-control'><br>
+    <label for="title" class="form-label">Title</label>
     <input type='title' name='title' value='{{ $note->title }}' id='title' class='form-control'><br>
+    <label for="content" class="form-label">Content</label>
     <textarea name='content' id='content' class='form-control'>{{ $note->content }}</textarea><br>
     <a class="btn btn-outline-secondary" href="/note" role="button">Cancel</a>
     <button type='submit' class='btn btn-outline-success'>Save</button>

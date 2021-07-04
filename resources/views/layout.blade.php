@@ -73,11 +73,5 @@
         <small class="d-block text-center text-muted">Evgenii Mironov "Note" 2021</small>
     </footer>
 
-    <script type="text/javascript">
-      $(function () {
-        $('#datetimepicker1').datetimepicker();
-      });
-    </script>
-
 </body>
 </html>
