@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () { TelegramBot::send('Hi!', '123'); })->everyMinute();
+        $schedule->call(function () { TelegramBot::runBot(); })->everyMinute();
     }
 
     /**
