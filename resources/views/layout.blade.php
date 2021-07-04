@@ -51,6 +51,7 @@
           <form method='post' action='/note'>
           <div class="modal-body">
             @csrf
+            <input type='notify_at' name='notify_at' id='notify_at' placeholder='yyyy-mm-dd hh:mm:ss' class='form-control'><br>
             <input type='title' name='title' id='title' placeholder='Title' class='form-control'><br>
             <textarea name='content' id='content' placeholder='Content' class='form-control'></textarea><br>
           </div>
@@ -71,6 +72,12 @@
     <footer class="footer fixed-bottom navbar-light bg-light border-top">
         <small class="d-block text-center text-muted">Evgenii Mironov "Note" 2021</small>
     </footer>
+
+    <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker1').datetimepicker();
+      });
+    </script>
 
 </body>
 </html>

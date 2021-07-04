@@ -11,6 +11,9 @@
       <div class="card-header">
         <a class="btn btn-outline-secondary btn-sm" href="/note/{{ $note->id }}" role="button" title="Edit"><i class="bi bi-pencil"></i></a>
         <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#delNoteModal{{ $note->id }}" title="Delete"><i class="bi bi-trash"></i></button>
+        @if($note->notify_at != null)
+          <button type="button" class="btn btn-outline-secondary btn-sm" disabled><i class="bi bi-alarm"></i> {{ $note->notify_at }}</button>
+        @endif
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ $note->title }}</h5>

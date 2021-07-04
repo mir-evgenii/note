@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Note;
+use App\Models\NoteNotifications;
 
 class NoteController extends Controller
 {
     // Get all notes | method: GET | host:port/note
     public function getAllNotes() {
-        $notes = Note::where('user_id', Auth::id())->get();
+        $notes = Note::where('user_id', Auth::id())
+            ->select('notes.id', 'title', 'content', 'notes.updated_at', 'note_notifications.notify_at')
+            ->leftJoin('note_notifications', 'notes.id', '=', 'note_notifications.note_id')
+            ->get();
 
         return view('notes', ['notes' => $notes]);
     }
@@ -20,6 +24,7 @@ class NoteController extends Controller
         $valid = $request->validate([
             'title' => 'required|min:1|max:255',
             'content' => 'required|min:1',
+            'notify_at' => 'nullable|date',
         ]);
 
         $note = new Note();
@@ -27,6 +32,13 @@ class NoteController extends Controller
         $note->title = $request->input('title');
         $note->content = $request->input('content');
         $note->save();
+
+        if ($request->input('notify_at') != null) {
+            $notify = new NoteNotifications();
+            $notify->note_id = $note->id;
+            $notify->notify_at = $request->input('notify_at');
+            $notify->save();
+        }
 
         return redirect()->route('note');
     }
