@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Telegram;
 
 
 class UserController extends Controller
@@ -23,9 +24,12 @@ class UserController extends Controller
 
     // Get user | method: GET | host:port/dashboard
     public function getUser() {
-        $id = Auth::id();
+        $user = User::where('users.id', Auth::id())
+            ->select('users.id', 'name', 'email', 'telegram.chat_id')
+            ->leftJoin('telegram', 'users.id', '=', 'telegram.user_id')
+            ->first();
 
-        return view('dashboard', ['user' => User::find($id)]);
+        return view('dashboard', ['user' => $user]);
     }
 
     // Update user | method: PUT | host:port/user
@@ -36,6 +40,20 @@ class UserController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->save();
+
+        return redirect()->route('dashboard');
+    }
+
+    // Update telegram chat id | method: PUT | host:port/user/telegram
+    public function updateTelegramChatId(Request $request) {
+        $telegram = Telegram::where('user_id', Auth::id())->first();
+
+        if ($telegram == null) {
+            $telegram = new Telegram();
+        }
+
+        $telegram->chat_id = $request->input('chat_id');
+        $telegram->save();
 
         return redirect()->route('dashboard');
     }

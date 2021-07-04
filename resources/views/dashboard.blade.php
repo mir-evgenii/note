@@ -19,7 +19,9 @@
         <form method='post' action='/user'>
           @method('PUT')
           @csrf
+          <label for="name" class="form-label">Name</label>
           <input type='name' name='name' value='{{ $user->name }}' id='name' class='form-control'><br>
+          <label for="email" class="form-label">Email</label>
           <input type='email' name='email' value='{{ $user->email }}' id='email' class='form-control'><br>
           <button type='submit' class='btn btn-outline-success'>Save</button>
         </form>
@@ -34,10 +36,11 @@
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <form method='post' action='/note'>
+        <form method='post' action='/user/telegram'>
           @method('PUT')
           @csrf
-          <input type='name' name='name' value='{{ $user->name }}' id='name' class='form-control'><br>
+          <label for="chat_id" class="form-label">Chat id</label>
+          <input type='chat_id' name='chat_id' value='{{ $user->chat_id }}' id='chat_id' class='form-control'><br>
           <button type='submit' class='btn btn-outline-success'>Save</button>
         </form>
       </div>
