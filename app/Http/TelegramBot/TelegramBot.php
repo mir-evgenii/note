@@ -45,6 +45,8 @@ class TelegramBot
                     $message = $note->title.' '.$note->content;
                     $chatId = $telegram->chat_id;
                     self::send($message, $chatId);
+                    $value->send = true;
+                    $value->save();
                 }
             }
         }

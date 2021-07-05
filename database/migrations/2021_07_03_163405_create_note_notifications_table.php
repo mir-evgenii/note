@@ -17,6 +17,7 @@ class CreateNoteNotificationsTable extends Migration
             $table->id();
             $table->foreignId('note_id')->constrained('notes');
             $table->dateTimeTz('notify_at', $precision = 0);
+            $table->boolean('send')->default(false);
             $table->timestamps();
         });
     }

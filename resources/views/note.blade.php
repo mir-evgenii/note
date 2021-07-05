@@ -11,7 +11,12 @@
 <form method='post' action='/note/{{ $note->id }}'>
     @method('PUT')
     @csrf
-    <label for="notify_at" class="form-label">Notify</label>
+    <label for="notify_at" class="form-label">
+    Notify
+    @if ($note->send)
+      (send)
+    @endif
+    </label>
     <input type='notify_at' name='notify_at' id='notify_at' value='{{ $note->notify_at }}' class='form-control'><br>
     <label for="title" class="form-label">Title</label>
     <input type='title' name='title' value='{{ $note->title }}' id='title' class='form-control'><br>

@@ -12,7 +12,7 @@ class NoteController extends Controller
     // Get all notes | method: GET | host:port/note
     public function getAllNotes() {
         $notes = Note::where('user_id', Auth::id())
-            ->select('notes.id', 'title', 'content', 'notes.updated_at', 'note_notifications.notify_at')
+            ->select('notes.id', 'title', 'content', 'notes.updated_at', 'note_notifications.notify_at', 'note_notifications.send')
             ->leftJoin('note_notifications', 'notes.id', '=', 'note_notifications.note_id')
             ->get();
 
@@ -47,7 +47,7 @@ class NoteController extends Controller
     public function getNote(Request $request) {
         $note = Note::where('notes.id', $request->id)
             ->where('user_id', Auth::id())
-            ->select('notes.id', 'title', 'content', 'notes.updated_at', 'note_notifications.notify_at')
+            ->select('notes.id', 'title', 'content', 'notes.updated_at', 'note_notifications.notify_at', 'note_notifications.send')
             ->leftJoin('note_notifications', 'notes.id', '=', 'note_notifications.note_id')
             ->first();
 
