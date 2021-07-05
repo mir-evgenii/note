@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Models\NoteNotifications;
+use DateTime;
 
 class NoteController extends Controller
 {
@@ -24,7 +25,7 @@ class NoteController extends Controller
         $valid = $request->validate([
             'title' => 'required|min:1|max:255',
             'content' => 'required|min:1',
-            'notify_at' => 'nullable|date',
+            'notify_at' => 'nullable|date|after:now',
         ]);
 
         $note = new Note();
@@ -60,6 +61,12 @@ class NoteController extends Controller
 
     // Update note | method: PUT | host:port/note/{id}
     public function updateNote(Request $request) {
+        $valid = $request->validate([
+            'title' => 'required|min:1|max:255',
+            'content' => 'required|min:1',
+            'notify_at' => 'nullable|date|after:now',
+        ]);
+
         $note = Note::where('id', $request->id)
             ->where('user_id', Auth::id())
             ->first();

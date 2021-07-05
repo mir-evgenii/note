@@ -17,6 +17,7 @@
       (send)
     @endif
     </label>
+    <input type='now' name='now' id='now' value="{{ date('Y-m-d H:i:s') }}" class='visually-hidden'>
     <input type='notify_at' name='notify_at' id='notify_at' value='{{ $note->notify_at }}' class='form-control'><br>
     <label for="title" class="form-label">Title</label>
     <input type='title' name='title' value='{{ $note->title }}' id='title' class='form-control'><br>

@@ -51,6 +51,7 @@
           <form method='post' action='/note'>
           <div class="modal-body">
             @csrf
+            <input type='now' name='now' id='now' value="{{ date('Y-m-d H:i:s') }}" class='visually-hidden'>
             <input type='notify_at' name='notify_at' id='notify_at' placeholder='yyyy-mm-dd hh:mm:ss' class='form-control'><br>
             <input type='title' name='title' id='title' placeholder='Title' class='form-control'><br>
             <textarea name='content' id='content' placeholder='Content' class='form-control'></textarea><br>
