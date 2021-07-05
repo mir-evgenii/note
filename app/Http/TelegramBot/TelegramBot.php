@@ -22,7 +22,14 @@ class TelegramBot
         $update = file_get_contents(self::getApiLink() . 'getUpdates');
         $updateArray = json_decode($update, TRUE);
 
-        return $updateArray;
+        if($updateArray['result']){
+            foreach($updateArray['result'] as $key=>$val){
+                $chat_id = $val['message']['chat']['id'];
+                $update_id = $val['update_id'];
+                file_get_contents(self::getApiLink() . "sendmessage?chat_id=$chat_id&text=Your chat id: $chat_id");
+                file_get_contents(self::getApiLink().'getUpdates?offset='.($update_id+1));
+            }
+        }
     }
 
     private static function send($message, $chatId) {
@@ -30,6 +37,8 @@ class TelegramBot
     }
 
     public static function runBot() {
+        self::getUpdate();
+
         $date = new DateTime();
         $now = $date->format('Y-m-d H:i:s');
         $date->add(new DateInterval('PT1M'));
