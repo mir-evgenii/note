@@ -4,6 +4,9 @@
 
 @section('main_layout_content')
 
+<div class="row justify-content-md-center">
+<div class="col-6">
+
 <div class="mb-3">
   <p class="text-muted">Last update {{ $note->updated_at }}</p>
 </div>
@@ -18,11 +21,11 @@
     @endif
     </label>
     <input type='now' name='now' id='now' value="{{ date('Y-m-d H:i:s') }}" class='visually-hidden'>
-    <input type='notify_at' name='notify_at' id='notify_at' value='{{ $note->notify_at }}' class='form-control'><br>
+    <input type='notify_at' name='notify_at' id='notify_at' value='{{ $note->notify_at }}' class='form-control @error("notify_at") is-invalid @enderror'><br>
     <label for="title" class="form-label">Title</label>
-    <input type='title' name='title' value='{{ $note->title }}' id='title' class='form-control'><br>
+    <input type='title' name='title' value='{{ $note->title }}' id='title' class='form-control @error("title") is-invalid @enderror'><br>
     <label for="content" class="form-label">Content</label>
-    <textarea name='content' id='content' class='form-control'>{{ $note->content }}</textarea><br>
+    <textarea name='content' id='content' class='form-control  @error("content") is-invalid @enderror'>{{ $note->content }}</textarea><br>
     <a class="btn btn-outline-secondary" href="/note" role="button">Cancel</a>
     <button type='submit' class='btn btn-outline-success'>Save</button>
     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delNoteModal">Delete</button>
@@ -49,6 +52,9 @@
         </div>
       </div>
     </div>
+</div>
+
+</div>
 </div>
 
 @endsection

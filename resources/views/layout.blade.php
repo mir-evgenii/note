@@ -66,6 +66,22 @@
     </div>
 
     <div class="mb-5 mt-5 pt-4 container">
+
+    @if ($errors->any())
+    <div class="row justify-content-md-center">
+      <div class="col-6">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+    @endif
+
     @yield('main_layout_content')
     </div>
 
