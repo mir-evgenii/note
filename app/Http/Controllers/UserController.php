@@ -33,6 +33,11 @@ class UserController extends Controller
 
     // Update user | method: PUT | host:port/user
     public function updateUser(Request $request) {
+        $valid = $request->validate([
+            'name' => 'required|min:1|max:255',
+            'email' => 'required|email',
+        ]);
+
         $id = Auth::id();
         $user = User::find($id);
 
@@ -45,6 +50,10 @@ class UserController extends Controller
 
     // Update telegram chat id | method: PUT | host:port/user/telegram
     public function updateTelegramChatId(Request $request) {
+        $valid = $request->validate([
+            'chat_id' => 'nullable|numeric',
+        ]);
+
         $telegram = Telegram::where('user_id', Auth::id())->first();
 
         if ($telegram == null) {

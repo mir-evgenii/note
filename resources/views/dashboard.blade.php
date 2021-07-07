@@ -20,9 +20,9 @@
           @method('PUT')
           @csrf
           <label for="name" class="form-label">Name</label>
-          <input type='name' name='name' value='{{ $user->name }}' id='name' class='form-control'><br>
+          <input type='name' name='name' value='{{ $user->name }}' id='name' class='form-control @error("name") is-invalid @enderror'><br>
           <label for="email" class="form-label">Email</label>
-          <input type='email' name='email' value='{{ $user->email }}' id='email' class='form-control'><br>
+          <input type='email' name='email' value='{{ $user->email }}' id='email' class='form-control @error("email") is-invalid @enderror'><br>
           <button type='submit' class='btn btn-outline-success'>Save</button>
         </form>
       </div>
@@ -40,7 +40,7 @@
           @method('PUT')
           @csrf
           <label for="chat_id" class="form-label">Chat id</label>
-          <input type='chat_id' name='chat_id' value='{{ $user->chat_id }}' id='chat_id' class='form-control'><br>
+          <input type='chat_id' name='chat_id' value='{{ $user->chat_id }}' id='chat_id' class='form-control @error("chat_id") is-invalid @enderror'><br>
           <button type='submit' class='btn btn-outline-success'>Save</button>
         </form>
       </div>
