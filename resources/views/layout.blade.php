@@ -14,6 +14,12 @@
     <!-- Get bootstrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
+    <!-- Get datetime picker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
     <title>@yield('title')</title>
 </head>
 <body>
@@ -52,7 +58,7 @@
           <div class="modal-body">
             @csrf
             <input type='now' name='now' id='now' value="{{ date('Y-m-d H:i:s') }}" class='visually-hidden'>
-            <input type='notify_at' name='notify_at' id='notify_at' placeholder='yyyy-mm-dd hh:mm:ss' class='form-control'><br>
+            <input type='notify_at' name='notify_at' id='notify_at' placeholder='yyyy-mm-dd hh:mm' class='form-control'><br>
             <input type='title' name='title' id='title' placeholder='Title' class='form-control'><br>
             <textarea name='content' id='content' placeholder='Content' class='form-control'></textarea><br>
           </div>
@@ -89,6 +95,22 @@
     <footer class="footer fixed-bottom navbar-light bg-light border-top">
         <small class="d-block text-center text-muted">Evgenii Mironov "Note" 2021</small>
     </footer>
+
+    <script>
+    $(function() {
+      $('input[name="notify_at"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        timePicker: true,
+        timePicker24Hour: true,
+        minYear: parseInt(moment().format('YYYY'),10),
+        maxYear: 2040,
+        locale: {
+          format: 'YYYY-MM-DD HH:mm'
+        }
+      });
+    });
+    </script>
 
 </body>
 </html>

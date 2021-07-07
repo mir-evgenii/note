@@ -83,6 +83,7 @@ class NoteController extends Controller
                     $notify->note_id = $note->id;
                 }
                 $notify->notify_at = $request->input('notify_at');
+                $notify->send = false;
                 $notify->save();
             }
         }
