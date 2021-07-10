@@ -20,7 +20,7 @@ class LoginTest extends DuskTestCase
                 ->type('email', env('TEST_USER_1_EMAIL'))
                 ->type('password', env('TEST_USER_1_PASSWORD'))
                 ->press('Log in')
-                ->assertPathIs('/dashboard');;
+                ->assertPathIs('/dashboard');
         });
     }
 }
