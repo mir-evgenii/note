@@ -9,7 +9,7 @@
   <div class="col">
     <div class="card text-dark bg-light">
       <div class="card-header">
-        <a class="btn btn-outline-secondary btn-sm" href="/note/{{ $note->id }}" role="button" title="Edit"><i class="bi bi-pencil"></i></a>
+        <a class="btn btn-outline-secondary btn-sm" href="/note/{{ $note->id }}" role="button" title="Edit" dusk="edit-note {{ $note->title }}"><i class="bi bi-pencil"></i></a>
         <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#delNoteModal{{ $note->id }}" title="Delete"><i class="bi bi-trash"></i></button>
         @if($note->notify_at != null)
           <button type="button" class="btn btn-outline-secondary btn-sm" disabled>

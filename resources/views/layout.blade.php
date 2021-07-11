@@ -99,7 +99,7 @@
     <script>
     $(function() {
       $('input[name="notify_at"]').daterangepicker({
-        startDate: moment().startOf('minute').add(5, 'minute'),
+        startDate: moment().startOf('hour').add(1, 'hour'),
         singleDatePicker: true,
         showDropdowns: true,
         timePicker: true,

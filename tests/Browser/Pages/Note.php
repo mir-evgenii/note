@@ -60,8 +60,15 @@ class Note extends Page
      *
      * @return void
      */
-    public function updateNote(Browser $browser, $title, $content)
+    public function updateNote(Browser $browser, $oldTitle, $newTitle, $content)
     {
-        
+        $browser->visit('/note')
+                ->click("@edit-note {$oldTitle}")
+                ->clear('@title-edit')
+                ->type('@title-edit', $newTitle)
+                ->clear('@content-edit')
+                ->type('@content-edit', $content)
+                ->click('@save-edit')
+                ->assertSee($newTitle);
     }
 }

@@ -22,7 +22,8 @@ class ExampleTest extends DuskTestCase
             $browser->visit(new Login)
                     ->loginUser1()
                     ->visit(new Note)
-                    ->createNewNote('Title 123', 'Content.');
+                    // ->createNewNote('Title 123', 'Content.')
+                    ->updateNote('Title 123', 'Title 1234', 'Content 123.');
         });
     }
 }
