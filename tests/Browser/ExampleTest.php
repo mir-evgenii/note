@@ -23,7 +23,8 @@ class ExampleTest extends DuskTestCase
                     ->loginUser1()
                     ->visit(new Note)
                     // ->createNewNote('Title 123', 'Content.')
-                    ->updateNote('Title 123', 'Title 1234', 'Content 123.');
+                    //->updateNote('Title 123', 'Title 1234', 'Content 123.');
+                    ->deleteNote('Title 1234');
         });
     }
 }

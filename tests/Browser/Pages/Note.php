@@ -71,4 +71,19 @@ class Note extends Page
                 ->click('@save-edit')
                 ->assertSee($newTitle);
     }
+
+    /**
+     * Delete note in edit form.
+     *
+     * @return void
+     */
+    public function deleteNote(Browser $browser, $title)
+    {
+        $browser->visit('/note')
+                ->click("@edit-note {$title}")
+                ->click('@delete-edit')
+                ->assertSee("Do you really want to delete note: \"{$title}\"")
+                ->click('@confirm-delete-edit')
+                ->assertDontSee($title);
+    }
 }

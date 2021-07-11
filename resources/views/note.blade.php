@@ -28,7 +28,7 @@
     <textarea dusk='content-edit' name='content' id='content' class='form-control  @error("content") is-invalid @enderror'>{{ $note->content }}</textarea><br>
     <a class="btn btn-outline-secondary" href="/note" role="button">Cancel</a>
     <button type='submit' class='btn btn-outline-success' dusk='save-edit'>Save</button>
-    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delNoteModal">Delete</button>
+    <button type="button" class="btn btn-outline-danger" dusk='delete-edit' data-bs-toggle="modal" data-bs-target="#delNoteModal">Delete</button>
 </form>
 
 <!-- Modal delete note -->
@@ -47,7 +47,7 @@
           <form method='post' action='/note/{{ $note->id }}'> 
             @csrf
             @method('DELETE')
-            <button type='submit' class='btn btn-outline-danger'>Delete</button>
+            <button type='submit' class='btn btn-outline-danger' dusk='confirm-delete-edit'>Delete</button>
           </form>
         </div>
       </div>
