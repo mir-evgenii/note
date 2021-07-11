@@ -7,6 +7,8 @@ use Laravel\Dusk\Page;
 
 class Note extends Page
 {
+    const PAUSE = 300;
+
     /**
      * Get the URL for the page.
      *
@@ -49,8 +51,10 @@ class Note extends Page
     {
         $browser->visit('/note')
                 ->click('@new-note')
+                ->pause(self::PAUSE)
                 ->type('@title', $title)
                 ->type('@content', $content)
+                ->pause(self::PAUSE)
                 ->click('@save')
                 ->assertSee($title);
     }
@@ -68,6 +72,7 @@ class Note extends Page
                 ->type('@title-edit', $newTitle)
                 ->clear('@content-edit')
                 ->type('@content-edit', $content)
+                ->pause(self::PAUSE)
                 ->click('@save-edit')
                 ->assertSee($newTitle);
     }
@@ -81,9 +86,12 @@ class Note extends Page
     {
         $browser->visit('/note')
                 ->click("@edit-note {$title}")
+                ->pause(self::PAUSE)
                 ->click('@delete-edit')
+                ->pause(self::PAUSE)
                 ->assertSee("Do you really want to delete note: \"{$title}\"")
                 ->click('@confirm-delete-edit')
+                ->pause(self::PAUSE)
                 ->assertDontSee($title);
     }
 }

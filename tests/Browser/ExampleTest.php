@@ -12,18 +12,18 @@ use Tests\Browser\Pages\Note;
 class ExampleTest extends DuskTestCase
 {
     /**
-     * A basic browser test example.
+     * CRUD note test.
      *
      * @return void
      */
-    public function testBasicExample()
+    public function testNoteCRUD()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit(new Login)
                     ->loginUser1()
                     ->visit(new Note)
-                    // ->createNewNote('Title 123', 'Content.')
-                    //->updateNote('Title 123', 'Title 1234', 'Content 123.');
+                    ->createNewNote('Title 123', 'Content.')
+                    ->updateNote('Title 123', 'Title 1234', 'Content 123.')
                     ->deleteNote('Title 1234');
         });
     }
