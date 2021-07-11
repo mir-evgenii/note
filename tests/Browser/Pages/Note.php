@@ -45,13 +45,23 @@ class Note extends Page
      *
      * @return void
      */
-    public function testNewNote(Browser $browser)
+    public function createNewNote(Browser $browser, $title, $content)
     {
         $browser->visit('/note')
-                ->click('body > div.navbar.fixed-top.navbar-light.bg-light.border-bottom > nav > button')
-                ->type('title', 'Title new note 1')
-                ->type('content', 'Content new note.')
-                ->click('Save')
-                ->assertSee('Title new note 1');
+                ->click('@new-note')
+                ->type('@title', $title)
+                ->type('@content', $content)
+                ->click('@save')
+                ->assertSee($title);
+    }
+
+    /**
+     * Update note.
+     *
+     * @return void
+     */
+    public function updateNote(Browser $browser, $title, $content)
+    {
+        
     }
 }

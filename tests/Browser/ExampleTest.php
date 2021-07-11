@@ -19,7 +19,10 @@ class ExampleTest extends DuskTestCase
     public function testBasicExample()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(new Login)->loginUser1();
+            $browser->visit(new Login)
+                    ->loginUser1()
+                    ->visit(new Note)
+                    ->createNewNote('Title 123', 'Content.');
         });
     }
 }

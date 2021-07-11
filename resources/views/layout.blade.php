@@ -33,7 +33,7 @@
       <nav class="m-3 mb-0 mt-0 d-inline-flex ms-md-auto">
         @if (Illuminate\Support\Facades\Auth::check())
           <a class="py-2 text-dark text-decoration-none" href="/note" title="All notes"><i class="bi bi-grid-3x3-gap"></i></a>
-          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newNoteModal" title="New note"><i class="bi bi-plus-lg"></i></button>
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newNoteModal" title="New note" dusk="new-note"><i  class="bi bi-plus-lg"></i></button>
           <a class="me-3 py-2 text-dark text-decoration-none" href="/dashboard" title="Dashboard"><i class="bi bi-person"></i></a>
           @if (App\Http\Controllers\UserController::isAdmin())
           <a class="me-3 py-2 text-dark text-decoration-none" href="/user" title="All users"><i class="bi bi-people"></i></a>
@@ -59,12 +59,12 @@
             @csrf
             <input type='now' name='now' id='now' value="{{ date('Y-m-d H:i:s') }}" class='visually-hidden'>
             <input type='notify_at' name='notify_at' id='notify_at' placeholder='yyyy-mm-dd hh:mm' class='form-control'><br>
-            <input type='title' name='title' id='title' placeholder='Title' class='form-control'><br>
-            <textarea name='content' id='content' placeholder='Content' class='form-control'></textarea><br>
+            <input type='title' name='title' id='title' placeholder='Title' class='form-control' dusk="title"><br>
+            <textarea name='content' id='content' placeholder='Content' class='form-control' dusk="content"></textarea><br>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-            <button type='submit' class='btn btn-outline-success'>Save</button>
+            <button type='submit' class='btn btn-outline-success' dusk="save">Save</button>
           </div>
           </form>
         </div>
@@ -99,6 +99,7 @@
     <script>
     $(function() {
       $('input[name="notify_at"]').daterangepicker({
+        startDate: moment().startOf('minute').add(5, 'minute'),
         singleDatePicker: true,
         showDropdowns: true,
         timePicker: true,
